@@ -87,6 +87,9 @@ nav a:hover{opacity:1}
     align-items:center;
     justify-content:center;
     padding:120px 3% 70px;
+    border-radius:36px;
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 28px 90px rgba(0,0,0,.26);
     background:
         radial-gradient(circle at 75% 25%, rgba(255,179,71,.20), transparent 30%),
         radial-gradient(circle at 25% 70%, rgba(0,212,255,.10), transparent 25%),
@@ -102,14 +105,17 @@ nav a:hover{opacity:1}
     min-height:100%;
     transform:translate(-50%,-50%);
     object-fit:cover;
-    opacity:.5;
-    filter:brightness(.9) saturate(1.05);
+    opacity:.58;
+    filter:brightness(.88) saturate(1.05);
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.85) 7%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 84%, rgba(0,0,0,.85) 93%, transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.85) 7%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 84%, rgba(0,0,0,.85) 93%, transparent 100%);
 }
 .hero::after{
     content:"";
     position:absolute; inset:0;
     background:
-        linear-gradient(180deg, rgba(5,6,8,.25) 0%, rgba(5,6,8,.45) 45%, rgba(5,6,8,.9) 100%);
+        linear-gradient(90deg, rgba(4,7,12,.92) 0%, rgba(4,7,12,.55) 8%, rgba(4,7,12,0) 18%, rgba(4,7,12,0) 82%, rgba(4,7,12,.55) 92%, rgba(4,7,12,.92) 100%),
+        linear-gradient(180deg, rgba(5,6,8,.22) 0%, rgba(5,6,8,.38) 40%, rgba(5,6,8,.88) 100%);
 }
 .hero-inner{
     position:relative; z-index:2;
@@ -473,6 +479,7 @@ footer{
     .hero{
         aspect-ratio:auto;
         min-height:100vh;
+        border-radius:28px;
     }
 }
 </style>
