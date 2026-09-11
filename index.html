@@ -9,9 +9,28 @@
 html{scroll-behavior:smooth}
 body{
     margin:0;
-    background:#050608;
+    position:relative;
+    isolation:isolate;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(72,170,255,.16), transparent 24%),
+        radial-gradient(circle at 88% 14%, rgba(255,179,71,.16), transparent 24%),
+        radial-gradient(circle at 52% 72%, rgba(126,87,255,.10), transparent 30%),
+        linear-gradient(180deg,#04070c 0%, #071019 42%, #04070d 100%);
     color:#fff;
     font-family:Arial,Helvetica,sans-serif;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    opacity:.18;
+    background:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,.25));
 }
 a{color:inherit}
 
@@ -20,9 +39,10 @@ header{
     z-index:50;
     display:flex; justify-content:space-between; align-items:center;
     padding:16px 6%;
-    background:rgba(5,6,8,.72);
-    backdrop-filter:blur(16px);
+    background:linear-gradient(180deg, rgba(5,8,14,.88), rgba(5,8,14,.70));
+    backdrop-filter:blur(18px);
     border-bottom:1px solid rgba(255,255,255,.08);
+    box-shadow:0 8px 30px rgba(0,0,0,.18);
 }
 .brand{
     display:flex; align-items:center; gap:12px;
@@ -160,9 +180,11 @@ nav a:hover{opacity:1}
     justify-content:center;
     justify-self:center;
 }
-.hero-card{
+ .hero-card{
     width:min(420px,100%);
-    background:linear-gradient(180deg, rgba(16,18,22,.88), rgba(7,8,11,.86));
+    background:
+        radial-gradient(circle at top, rgba(255,179,71,.10), transparent 30%),
+        linear-gradient(180deg, rgba(16,18,22,.90), rgba(7,8,11,.88));
     border:1px solid rgba(255,255,255,.10);
     border-radius:30px;
     padding:22px;
@@ -200,6 +222,30 @@ section{
     width:min(1920px, calc(100% - 48px));
     margin:0 auto;
     padding:84px 0;
+}
+#games, #contact{
+    position:relative;
+    padding-left:32px;
+    padding-right:32px;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:36px;
+    overflow:hidden;
+    backdrop-filter:blur(8px);
+}
+#games{
+    background:
+        radial-gradient(circle at top right, rgba(0,212,255,.08), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(255,179,71,.08), transparent 26%),
+        linear-gradient(180deg, rgba(9,14,22,.82), rgba(6,9,14,.90));
+    box-shadow:0 24px 70px rgba(0,0,0,.18);
+}
+#contact{
+    margin-top:26px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(126,87,255,.12), transparent 26%),
+        radial-gradient(circle at 85% 0%, rgba(255,179,71,.10), transparent 25%),
+        linear-gradient(180deg, rgba(10,14,22,.82), rgba(6,10,16,.92));
+    box-shadow:0 24px 70px rgba(0,0,0,.16);
 }
 .section-title{
     font-size:46px;
@@ -285,11 +331,13 @@ section{
     font-size:17px;
     min-height:116px;
 }
-.card{
+ .card{
     display:flex;
     flex-direction:column;
     height:100%;
-    background:linear-gradient(180deg,#101216,#0a0b0f);
+    background:
+        radial-gradient(circle at top right, rgba(72,170,255,.08), transparent 26%),
+        linear-gradient(180deg, rgba(16,18,22,.96), rgba(10,11,15,.96));
     border:1px solid rgba(255,255,255,.08);
     border-radius:28px;
     padding:20px;
@@ -300,11 +348,13 @@ section{
     border-color:#ffd166;
     box-shadow:0 20px 50px rgba(255,180,0,.14);
 }
-.image{
+ .image{
     height:230px;
     border-radius:22px;
     overflow:hidden;
-    background:#16181d;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,179,71,.10), transparent 30%),
+        linear-gradient(180deg,#171b22,#10141b);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -355,7 +405,7 @@ section{
 }
 footer{
     width:min(1920px, calc(100% - 48px));
-    margin:0 auto;
+    margin:18px auto 0;
     padding:26px 0 34px;
     border-top:1px solid rgba(255,255,255,.08);
     display:flex;
@@ -402,6 +452,7 @@ footer{
     .brand img{width:36px;height:36px}
     .lang-switch{margin-left:14px}
     section{width:min(100% - 28px, 1200px); padding:68px 0}
+    #games, #contact{padding-left:18px; padding-right:18px; border-radius:28px}
     .section-title{font-size:38px}
     .hero h1{letter-spacing:-1px}
     .hero-description{font-size:18px}
