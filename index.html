@@ -1,709 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prism 113 — Independent Game Studio</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#111211">
+<meta name="description" content="Prism 113 is an independent game studio. Discover Half Blade Duel Combat, Liar's Cards and Dome Guardian on Google Play.">
+<title>Prism 113 — Independent Game Studio</title><link rel="icon" href="images/prism113-logo.png" type="image/png">
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-    margin:0;
-    position:relative;
-    isolation:isolate;
-    background:
-        radial-gradient(circle at 12% 8%, rgba(72,170,255,.16), transparent 24%),
-        radial-gradient(circle at 88% 14%, rgba(255,179,71,.16), transparent 24%),
-        radial-gradient(circle at 52% 72%, rgba(126,87,255,.10), transparent 30%),
-        linear-gradient(180deg,#04070c 0%, #071019 42%, #04070d 100%);
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-}
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-1;
-    opacity:.18;
-    background:
-        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size:72px 72px;
-    mask-image:linear-gradient(180deg, rgba(0,0,0,.8), rgba(0,0,0,.25));
-}
-a{color:inherit}
-
-header{
-    position:fixed; top:0; left:0; width:100%;
-    z-index:50;
-    display:flex; justify-content:space-between; align-items:center;
-    padding:16px 6%;
-    background:linear-gradient(180deg, rgba(5,8,14,.88), rgba(5,8,14,.70));
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    box-shadow:0 8px 30px rgba(0,0,0,.18);
-}
-.brand{
-    display:flex; align-items:center; gap:12px;
-    font-size:30px; font-weight:800; letter-spacing:-0.5px;
-}
-.brand img{
-    width:42px; height:42px; object-fit:contain;
-    filter:drop-shadow(0 0 18px rgba(255,184,0,.18));
-}
-nav{display:flex; align-items:center}
-nav a{
-    text-decoration:none; margin-left:28px; color:#fff; opacity:.95;
-}
-nav a:hover{opacity:1}
-
-.lang-switch{
-    margin-left:28px;
-    display:inline-flex;
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:999px;
-    overflow:hidden;
-    background:rgba(255,255,255,.04);
-    cursor:pointer;
-}
-.lang-switch span{
-    padding:8px 14px;
-    font-size:14px;
-    transition:.25s;
-}
-.active-lang{
-    background:linear-gradient(90deg,#ffd166,#ffb347);
-    color:#000;
-    font-weight:700;
-}
-
-.hero{
-    min-height:0;
-    aspect-ratio:1920 / 886;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:120px 3% 70px;
-    border-radius:36px;
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 28px 90px rgba(0,0,0,.26);
-    background:
-        radial-gradient(circle at 75% 25%, rgba(255,179,71,.20), transparent 30%),
-        radial-gradient(circle at 25% 70%, rgba(0,212,255,.10), transparent 25%),
-        linear-gradient(135deg,#08090d,#020304 70%);
-}
-.hero video{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:100%;
-    height:100%;
-    min-width:100%;
-    min-height:100%;
-    transform:translate(-50%,-50%);
-    object-fit:cover;
-    opacity:.58;
-    filter:brightness(.88) saturate(1.05);
-    -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.85) 7%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 84%, rgba(0,0,0,.85) 93%, transparent 100%);
-    mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.85) 7%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 84%, rgba(0,0,0,.85) 93%, transparent 100%);
-}
-.hero::after{
-    content:"";
-    position:absolute; inset:0;
-    background:
-        linear-gradient(90deg, rgba(4,7,12,.92) 0%, rgba(4,7,12,.55) 8%, rgba(4,7,12,0) 18%, rgba(4,7,12,0) 82%, rgba(4,7,12,.55) 92%, rgba(4,7,12,.92) 100%),
-        linear-gradient(180deg, rgba(5,6,8,.22) 0%, rgba(5,6,8,.38) 40%, rgba(5,6,8,.88) 100%);
-}
-.hero-inner{
-    position:relative; z-index:2;
-    display:grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap:48px;
-    align-items:center;
-    width:min(1480px,100%);
-    margin:0 auto;
-    justify-content:center;
-    justify-items:center;
-    grid-template-columns:minmax(560px, 760px) minmax(320px, 420px);
-}
-.hero-copy{max-width:760px; justify-self:center}
-.kicker{
-    display:inline-block;
-    padding:8px 14px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.14);
-    background:rgba(255,255,255,.05);
-    color:#d7d7d7;
-    font-size:13px;
-    letter-spacing:.6px;
-    text-transform:uppercase;
-}
-.hero h1{
-    margin:18px 0 18px;
-    font-size:clamp(46px,7vw,84px);
-    line-height:.95;
-    letter-spacing:-2px;
-    background:linear-gradient(90deg,#ffffff 0%, #ffe3a6 45%, #ffb347 100%);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-.hero-description{
-    font-size:20px;
-    line-height:1.65;
-    color:#d7d7d7;
-    margin:0;
-}
-.hero-actions{
-    display:flex; gap:14px; flex-wrap:wrap;
-    margin-top:28px;
-}
-.button{
-    display:inline-flex; align-items:center; justify-content:center;
-    min-height:52px;
-    padding:14px 24px;
-    border-radius:14px;
-    background:#fff;
-    color:#000;
-    text-decoration:none;
-    font-weight:700;
-    box-shadow:0 10px 28px rgba(0,0,0,.22);
-    transition:transform .25s ease, box-shadow .25s ease;
-}
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 16px 38px rgba(0,0,0,.30);
-}
-.button.secondary{
-    background:rgba(255,255,255,.07);
-    color:#fff;
-    border:1px solid rgba(255,255,255,.14);
-}
-.hero-side{
-    display:flex;
-    justify-content:center;
-    justify-self:center;
-}
- .hero-card{
-    width:min(420px,100%);
-    background:
-        radial-gradient(circle at top, rgba(255,179,71,.10), transparent 30%),
-        linear-gradient(180deg, rgba(16,18,22,.90), rgba(7,8,11,.88));
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:30px;
-    padding:22px;
-    box-shadow:0 25px 70px rgba(0,0,0,.34);
-    backdrop-filter: blur(6px);
-}
-.hero-card img{
-    width:100%;
-    border-radius:24px;
-    display:block;
-    box-shadow:0 0 40px rgba(255,184,0,.18);
-}
-.hero-stats{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:16px;
-    margin-top:22px;
-}
-.stat, .metric{
-    background:rgba(0,0,0,.34);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:18px 18px 16px;
-    text-align:center;
-}
-.stat strong, .metric b{
-    display:block;
-    font-size:28px;
-    line-height:1.1;
-    color:#ffd166;
-    margin-bottom:6px;
-}
-.stat-title{color:#e5e5e5}
-section{
-    width:min(1920px, calc(100% - 48px));
-    margin:0 auto;
-    padding:84px 0;
-}
-#games, #contact{
-    position:relative;
-    padding-left:32px;
-    padding-right:32px;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:36px;
-    overflow:hidden;
-    backdrop-filter:blur(8px);
-}
-#games{
-    background:
-        radial-gradient(circle at top right, rgba(0,212,255,.08), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(255,179,71,.08), transparent 26%),
-        linear-gradient(180deg, rgba(9,14,22,.82), rgba(6,9,14,.90));
-    box-shadow:0 24px 70px rgba(0,0,0,.18);
-}
-#contact{
-    margin-top:26px;
-    background:
-        radial-gradient(circle at 15% 20%, rgba(126,87,255,.12), transparent 26%),
-        radial-gradient(circle at 85% 0%, rgba(255,179,71,.10), transparent 25%),
-        linear-gradient(180deg, rgba(10,14,22,.82), rgba(6,10,16,.92));
-    box-shadow:0 24px 70px rgba(0,0,0,.16);
-}
-.section-title{
-    font-size:46px;
-    line-height:1;
-    margin:0 0 26px;
-    letter-spacing:-1.5px;
-    background:linear-gradient(90deg,#fff,#9be6ff);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.feature-game{
-    display:grid;
-    grid-template-columns:1.02fr .98fr;
-    gap:34px;
-    align-items:center;
-    background:linear-gradient(135deg,#101216,#060709);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:32px;
-    padding:28px;
-    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-}
-.feature-game:hover{
-    transform:translateY(-10px);
-    border-color:#ffd166;
-    box-shadow:0 20px 50px rgba(255,180,0,.16);
-}
-.feature-image{
-    min-height:360px;
-    display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-    border-radius:26px;
-    overflow:hidden;
-}
-.feature-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-.feature-copy h3{
-    margin:0 0 14px;
-    font-size:36px;
-    letter-spacing:-1px;
-}
-.feature-copy p{
-    margin:0 0 22px;
-    color:#d1d1d1;
-    line-height:1.7;
-    font-size:18px;
-}
-.metrics{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:16px;
-    margin:0 0 22px;
-}
-.games-grid{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:24px;
-    margin-top:28px;
-}
-.game-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 12px;
-    margin-bottom:14px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.05);
-    color:#ffd166;
-    font-size:13px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-}
-.game-description{
-    margin:0 0 20px;
-    color:#d1d1d1;
-    line-height:1.7;
-    font-size:17px;
-    min-height:116px;
-}
- .card{
-    display:flex;
-    flex-direction:column;
-    height:100%;
-    background:
-        radial-gradient(circle at top right, rgba(72,170,255,.08), transparent 26%),
-        linear-gradient(180deg, rgba(16,18,22,.96), rgba(10,11,15,.96));
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:28px;
-    padding:20px;
-    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-}
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#ffd166;
-    box-shadow:0 20px 50px rgba(255,180,0,.14);
-}
- .image{
-    height:230px;
-    border-radius:22px;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 50% 35%, rgba(255,179,71,.10), transparent 30%),
-        linear-gradient(180deg,#171b22,#10141b);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:18px;
-}
-.image img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-}
-.card h3{
-    margin:18px 0 10px;
-    font-size:30px;
-    letter-spacing:-0.8px;
-}
-.meta{
-    color:#b9b9b9;
-    margin-bottom:16px;
-    font-size:17px;
-}
-.game-button{
-    display:inline-flex; justify-content:center; align-items:center;
-    width:100%;
-    min-height:50px;
-    margin-top:auto;
-    padding:12px 20px;
-    border-radius:14px;
-    text-decoration:none;
-    font-weight:700;
-    color:#000;
-    background:linear-gradient(90deg,#ffd166,#ffb347);
-    transition:transform .25s ease, box-shadow .25s ease;
-    box-shadow:0 10px 26px rgba(0,0,0,.18);
-}
-.game-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 16px 38px rgba(255,209,102,.18);
-}
-.contact{
-    text-align:center;
-    padding-top:100px;
-}
-.contact p{
-    font-size:18px;
-    color:#d6d6d6;
-    margin:0 0 22px;
-}
-footer{
-    width:min(1920px, calc(100% - 48px));
-    margin:18px auto 0;
-    padding:26px 0 34px;
-    border-top:1px solid rgba(255,255,255,.08);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:18px;
-    color:#a7a7a7;
-}
-.footer-brand{
-    display:flex; align-items:center; gap:12px;
-    color:#fff; font-weight:700;
-}
-.footer-brand img{
-    width:34px; height:34px; object-fit:contain;
-}
-.footer-links{
-    display:flex; gap:18px; flex-wrap:wrap;
-}
-.footer-links a{
-    color:#cfcfcf;
-    text-decoration:none;
-}
-.footer-links a:hover{color:#fff}
-
-@media (max-width: 980px){
-    .hero-inner,
-    .feature-game{
-        grid-template-columns:1fr;
-    }
-    .games-grid{
-        grid-template-columns:1fr 1fr;
-    }
-    .hero-side{order:-1}
-    .hero{padding-top:112px}
-    .feature-image{min-height:300px}
-    .hero-copy{max-width:100%}
-}
-@media (max-width: 760px){
-    nav a{display:none}
-    header{
-        padding:14px 18px;
-    }
-    .brand{font-size:24px}
-    .brand img{width:36px;height:36px}
-    .lang-switch{margin-left:14px}
-    section{width:min(100% - 28px, 1200px); padding:68px 0}
-    #games, #contact{padding-left:18px; padding-right:18px; border-radius:28px}
-    .section-title{font-size:38px}
-    .hero h1{letter-spacing:-1px}
-    .hero-description{font-size:18px}
-    .hero-stats, .metrics{grid-template-columns:1fr 1fr}
-    footer{
-        width:min(100% - 28px,1200px);
-        flex-direction:column;
-        align-items:flex-start;
-    }
-}
-@media (max-width: 520px){
-    .hero-stats, .metrics, .games-grid{grid-template-columns:1fr}
-    .feature-copy h3, .card h3{font-size:26px}
-    .game-description{min-height:auto}
-}
-
-@media(max-width:900px){
-    .hero{
-        aspect-ratio:auto;
-        min-height:100vh;
-        border-radius:28px;
-    }
-}
+:root{color-scheme:dark;--bg:#111211;--surface:#1a1c1a;--ink:#f1eee5;--muted:#b0b2aa;--accent:#ecaa68;--line:rgba(241,238,229,.14);--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}body.modal-open{overflow:hidden}::selection{background:var(--accent);color:var(--bg)}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;border:0}button,a{-webkit-tap-highlight-color:transparent}img{display:block;max-width:100%}svg.icon{width:20px;height:20px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.shell{width:min(1320px,calc(100% - 96px));margin-inline:auto}.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:650}.eyebrow::before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0}.muted{color:var(--muted)}.skip-link{position:fixed;top:8px;left:8px;padding:12px;background:var(--ink);color:var(--bg);transform:translateY(-160%);z-index:200}.skip-link:focus{transform:none}
+.site-header{position:fixed;top:0;left:0;width:100%;height:88px;z-index:50;background:linear-gradient(#111211e8,#11121100);transition:height .3s,background .3s,border-color .3s;border-bottom:1px solid transparent}.site-header.scrolled{height:74px;background:#111211ed;backdrop-filter:blur(16px);border-color:var(--line)}.header-inner{height:100%;display:flex;align-items:center;gap:40px}.brand{display:flex;align-items:center;gap:12px;margin-right:auto;font-size:22px;font-weight:750;letter-spacing:-.7px;white-space:nowrap}.brand img{width:38px;height:38px;object-fit:contain;border-radius:5px}.brand em{font-style:normal;font-weight:400;color:var(--muted)}.nav{display:flex;align-items:center;gap:30px}.nav a{font-size:13px;color:#d7d8d2;position:relative;padding:10px 0;transition:color .2s}.nav a::after{content:"";position:absolute;bottom:3px;left:0;width:100%;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}.nav a:hover,.nav a[aria-current]{color:var(--accent)}.nav a:hover::after,.nav a[aria-current]::after{transform:scaleX(1)}.header-tools{display:flex;align-items:center;gap:20px}.lang-switch{display:flex;align-items:center;gap:4px}.lang-switch button{padding:8px 9px;background:transparent;font-size:11px;letter-spacing:1px;color:#a4a59e;transition:color .2s,background .2s;border-radius:4px;min-height:36px}.lang-switch button[aria-pressed="true"]{background:rgba(241,238,229,.1);color:var(--ink)}.header-link{font-size:12px;display:flex;gap:10px;align-items:center;border:1px solid var(--line);padding:11px 16px;border-radius:5px;transition:border-color .2s}.header-link:hover{border-color:var(--accent)}.menu-toggle{display:none;background:transparent;width:42px;height:42px;align-items:center;justify-content:center}.scroll-progress{position:absolute;bottom:-1px;left:0;height:2px;background:var(--accent);width:100%;transform:scaleX(0);transform-origin:left;pointer-events:none}
+.hero{position:relative;min-height:min(900px,100svh);overflow:hidden;display:flex;align-items:center;padding:160px 0 180px;background:#1b1b17}.hero-media{position:absolute;inset:0;overflow:hidden;background:linear-gradient(90deg,#161713,#24211b)}.hero-media video{width:100%;height:100%;object-fit:cover;object-position:65% 50%;opacity:0;transition:opacity 1.4s;filter:saturate(.7);transform:scale(1.035)}.hero-media video.ready{opacity:.7}.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,12,.92) 0%,rgba(12,14,12,.68) 42%,rgba(12,14,12,.12) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 38%,rgba(12,14,12,.2) 100%)}.hero-content{position:relative;z-index:1;pointer-events:none}.hero-content a,.hero-content button{pointer-events:auto}.hero .eyebrow{color:#deddd4;margin-bottom:30px}.hero h1{font-size:clamp(62px,7.7vw,112px);line-height:.94;letter-spacing:-5px;margin:0 0 28px;font-weight:800;max-width:900px}.hero h1 span{display:block}.hero h1 .title-accent{color:var(--accent);font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:italic;font-size:.94em;letter-spacing:-4px}.hero-description{max-width:450px;color:#c7c8bf;font-size:16px;line-height:1.8;margin:0 0 32px}.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:17px 23px;min-height:54px;border-radius:5px;font-size:13px;font-weight:650;background:var(--accent);color:#171611;transition:background .25s,transform .3s var(--ease),box-shadow .3s}.button:hover{background:#f5bf88;transform:translateY(-3px);box-shadow:0 8px 30px #0003}.button .icon{transition:transform .3s var(--ease)}.button:hover .icon{transform:translate(2px,-2px)}.text-button{display:inline-flex;align-items:center;gap:12px;font-size:13px;background:transparent;padding:12px 0}.play-ring{display:flex;align-items:center;justify-content:center;width:39px;height:39px;border:1px solid #ffffff48;border-radius:50%;transition:background .25s,border-color .25s}.text-button:hover .play-ring{border-color:var(--accent);background:#ecaa6815}.play-ring .icon{width:15px;height:15px;margin-left:2px}
+.hero-bottom{position:absolute;bottom:40px;left:0;right:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:25px}.hero-facts{display:flex;align-items:center;gap:30px}.hero-facts img{width:52px;height:52px;border-radius:10px;object-fit:cover;border:1px solid #ffffff24}.feature-label{font-size:10px;letter-spacing:1.7px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}.feature-title{font-size:13px;margin:0;font-weight:600}.hero-stat{border-left:1px solid var(--line);padding-left:30px;font-size:11px;color:var(--muted)}.hero-stat strong{display:block;font-size:20px;font-weight:650;color:var(--ink);margin-bottom:3px}.star{color:var(--accent);font-size:14px}.hero-controls{display:flex;align-items:center;gap:24px}.motion-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#ffffff09;border:1px solid var(--line);transition:background .2s}.motion-toggle:hover{background:#ffffff1c}.scroll-link{display:flex;align-items:center;gap:15px;color:var(--muted);font-size:11px}.scroll-link .icon{color:var(--ink);animation:scroll-nudge 2.5s infinite}
+.section{padding:100px 0}.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;margin-bottom:44px}.section-heading .eyebrow{color:var(--muted);margin-bottom:22px}h2{font-size:clamp(36px,4.4vw,62px);line-height:1.06;letter-spacing:-2.5px;font-weight:650;margin:0}.section-heading h2{max-width:720px}.section-heading p{max-width:330px;color:var(--muted);line-height:1.75;font-size:14px;margin:0 0 4px;flex-shrink:0}.games-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}.game-card{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:9px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .4s,box-shadow .4s}.game-card:hover{transform:translateY(-7px);border-color:#ecaa685c;box-shadow:0 22px 50px #0003}.game-art{position:relative;overflow:hidden;aspect-ratio:1.18;display:block;background:#20221f}.game-art img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .8s;filter:saturate(.85)}.game-card:hover .game-art img{transform:scale(1.055);filter:saturate(1)}.game-art::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0005,transparent 40%);pointer-events:none}.art-label{position:absolute;top:18px;left:18px;z-index:1;background:#111211cf;backdrop-filter:blur(8px);border:1px solid #ffffff21;border-radius:4px;padding:7px 10px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--ink)}.art-number{position:absolute;bottom:16px;right:20px;z-index:1;font-size:11px;letter-spacing:2px;color:#fff9}.game-info{padding:26px;display:flex;flex-direction:column;flex:1}.game-genre{font-size:10px;color:var(--accent);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px}.game-info h3{font-size:25px;line-height:1.17;letter-spacing:-.7px;font-weight:650;margin:0 0 14px;min-height:59px}.game-description{font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 26px;flex:1}.game-stats{display:flex;gap:24px;align-items:center;font-size:12px;border-bottom:1px solid var(--line);padding-bottom:21px;margin-bottom:21px}.game-stats span{display:flex;align-items:center;gap:6px}.game-stats small{font-size:10px;color:var(--muted)}.game-link{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-weight:650;padding:3px 0;color:var(--ink);transition:color .2s}.game-link:hover{color:var(--accent)}.game-link .icon{width:17px;height:17px;transition:transform .3s}.game-link:hover .icon{transform:translate(2px,-2px)}.privacy-link{font-size:10px;color:var(--muted);margin-top:18px;width:fit-content;text-decoration:underline;text-underline-offset:3px;opacity:.8}.privacy-link:hover{color:var(--ink);opacity:1}.catalog-bottom{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:32px;padding-top:25px;border-top:1px solid var(--line)}.catalog-bottom p{margin:0;color:var(--muted);font-size:12px}.inline-link{display:inline-flex;align-items:center;gap:12px;font-size:12px;transition:color .2s}.inline-link:hover{color:var(--accent)}
+.studio{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.4fr;gap:90px;padding-top:65px;padding-bottom:90px}.studio .eyebrow{color:var(--muted);margin-bottom:26px}.studio h2{font-size:42px;max-width:450px}.studio h2 em{font-family:Georgia,serif;font-weight:400;color:var(--accent)}.studio-copy{padding-top:4px}.studio-copy>p{color:var(--muted);font-size:16px;line-height:1.9;margin:0 0 30px;max-width:620px}.studio-tags{display:flex;gap:10px;flex-wrap:wrap}.studio-tags span{font-size:11px;border:1px solid var(--line);padding:9px 13px;border-radius:4px;color:#c4c6bd}
+.contact{position:relative;overflow:hidden;background:#e9e6db;color:#191b16;padding:76px 0 70px}.contact::after{content:"113";position:absolute;right:-10px;bottom:-75px;font-size:360px;font-weight:800;line-height:1;letter-spacing:-25px;color:#191b1607;pointer-events:none}.contact-inner{display:flex;justify-content:space-between;gap:60px;align-items:center;position:relative;z-index:1}.contact .eyebrow{color:#686b62;margin-bottom:23px}.contact .eyebrow::before{background:#7b6541}.contact h2{max-width:740px;font-size:clamp(40px,4.5vw,65px)}.contact h2 em{font-family:Georgia,serif;font-weight:400}.contact p{font-size:14px;line-height:1.8;color:#66695f;margin:24px 0 0;max-width:480px}.contact-action{display:flex;flex-direction:column;align-items:flex-start;gap:17px;flex-shrink:0}.contact .button{background:#20231d;color:var(--ink);min-width:200px}.contact .button:hover{background:#3b4034}.contact-email{color:#52564b;font-size:12px;text-decoration:underline;text-underline-offset:5px}
+footer{padding:38px 0 24px}.footer-top,.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer-top .brand{font-size:19px}.footer-top .brand img{width:29px;height:29px}.footer-links{display:flex;align-items:center;gap:26px;color:var(--muted);font-size:12px}.footer-links a:hover{color:var(--accent)}.footer-bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:#8b8f83;font-size:10px;letter-spacing:.3px}.back-top{display:flex;align-items:center;gap:10px}.back-top .icon{width:13px;height:13px;transform:rotate(180deg)}
+.trailer-dialog{padding:0;background:#161815;color:var(--ink);border:1px solid var(--line);border-radius:10px;width:min(1000px,calc(100% - 32px));max-height:90svh;box-shadow:0 40px 100px #0009}.trailer-dialog::backdrop{background:#000c;backdrop-filter:blur(10px)}.dialog-heading{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;gap:20px}.dialog-heading h2{font-size:16px;letter-spacing:0;font-weight:600}.dialog-close{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:#ffffff09;border-radius:50%}.trailer-dialog video{display:block;width:100%;max-height:70svh;background:#000}.dialog-footer{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:12px;color:var(--muted)}.dialog-footer .inline-link{color:var(--accent)}
+.reveal{opacity:1;transform:none}.motion-on .reveal.pending{opacity:0;transform:translateY(26px)}.motion-on .reveal{transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--delay,0ms)}.motion-on .hero-content{animation:hero-enter 1.1s var(--ease) both}@keyframes hero-enter{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes scroll-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}.motion-off *,.motion-off *::before,.motion-off *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.motion-off{scroll-behavior:auto}
+@media(min-width:1700px){.hero{min-height:850px}}
+@media(max-width:1100px){.shell{width:calc(100% - 64px)}.header-inner{gap:24px}.header-tools{gap:12px}.header-link{display:none}.hero h1{font-size:90px}.game-info{padding:22px}.game-info h3{font-size:23px}.studio{gap:50px}.contact-inner{gap:35px}.contact-action{flex-shrink:1}.section-heading p{max-width:260px}}
+@media(max-width:800px){.shell{width:calc(100% - 40px)}.site-header{height:76px}.hero{min-height:780px;padding-top:145px;padding-bottom:185px}.hero h1{font-size:clamp(60px,10.5vw,84px);letter-spacing:-3.5px}.hero h1 .title-accent{letter-spacing:-3px}.hero-media::after{background:linear-gradient(90deg,#0c0e0ce0,#0c0e0c66),linear-gradient(0deg,var(--bg),transparent 65%)}.hero-description{font-size:15px}.hero-facts{gap:18px}.hero-stat{padding-left:18px}.scroll-link{display:none}.games-grid{gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}.game-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.game-card:last-child .game-art{height:100%;aspect-ratio:auto}.section{padding:75px 0}.section-heading p{max-width:220px}.game-info h3{min-height:54px}.studio{grid-template-columns:1fr;gap:28px;padding-top:50px;padding-bottom:65px}.studio h2{max-width:none}.contact-inner{align-items:flex-start;flex-direction:column;gap:32px}.contact-action{flex-direction:row;align-items:center;flex-wrap:wrap}.contact{padding:60px 0}.footer-links{gap:18px}}
+@media(max-width:600px){html{scroll-padding-top:88px}.brand{font-size:20px;gap:9px}.brand img{width:32px;height:32px}.header-inner{gap:12px}.header-tools{gap:8px}.menu-toggle{display:flex}.nav{display:none;position:absolute;top:76px;left:0;right:0;background:#171a16f7;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:20px;flex-direction:column;align-items:stretch;gap:6px}.nav.open{display:flex}.nav a{padding:14px 10px;font-size:16px}.nav a::after{display:none}.site-header.scrolled .nav{top:74px}.hero{min-height:max(760px,100svh);padding:130px 0 200px}.hero .eyebrow{font-size:9px;letter-spacing:1.6px;margin-bottom:30px}.hero h1{font-size:clamp(54px,12vw,72px);letter-spacing:-3px;line-height:1.02;margin-bottom:22px}.hero h1 .title-accent{letter-spacing:-2.5px}.hero-description{font-size:14px;max-width:350px;margin-bottom:26px}.hero-actions{gap:13px}.button{padding:16px 19px;font-size:12px}.text-button{font-size:12px;gap:9px}.hero-bottom{bottom:25px;align-items:flex-end;gap:10px}.hero-facts{flex-wrap:wrap;gap:20px 16px;max-width:300px}.hero-facts img{width:44px;height:44px}.hero-facts>div:nth-child(2){width:calc(100% - 66px)}.hero-stat{border:0;padding:0}.hero-stat strong{font-size:19px}.hero-stat:last-child{border-left:1px solid var(--line);padding-left:20px}.feature-title{font-size:12px}.feature-label{font-size:9px}.section{padding:60px 0}.section-heading{display:block;margin-bottom:30px}.section-heading .eyebrow{margin-bottom:17px}h2{font-size:40px;letter-spacing:-1.7px}.section-heading p{max-width:350px;margin-top:19px;font-size:13px}.games-grid{grid-template-columns:1fr;gap:22px}.game-card:last-child{display:flex;grid-column:auto}.game-card:last-child .game-art{height:auto;aspect-ratio:1.18}.game-art{aspect-ratio:1.22}.game-info{padding:24px}.game-info h3{min-height:0;font-size:27px;max-width:310px}.game-description{font-size:14px}.game-stats{font-size:13px}.game-link{font-size:13px;min-height:34px}.privacy-link{font-size:11px;min-height:28px;display:flex;align-items:center;margin-top:12px}.catalog-bottom{align-items:flex-start;flex-direction:column;gap:16px}.studio{gap:22px;padding-top:45px;padding-bottom:55px}.studio h2{font-size:37px}.studio-copy>p{font-size:14px}.contact{padding:50px 0}.contact h2{font-size:44px;letter-spacing:-2px}.contact p{font-size:13px}.contact-action{gap:22px}.footer-top{align-items:flex-start}.footer-links{flex-direction:column;align-items:flex-end;gap:14px}.footer-bottom{align-items:flex-start;font-size:9px}.footer-bottom>span{max-width:230px}.dialog-footer{flex-wrap:wrap}.dialog-heading{padding:13px 16px}.dialog-heading h2{font-size:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:380px){.hero h1{font-size:clamp(42px,12vw,54px)}.hero .eyebrow{letter-spacing:1px}.hero{padding-top:120px}}
+.hero-media video{opacity:.65}
+.hero-media video.ready{opacity:.7}
+@font-face{font-family:"Cinzel";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/cinzel-500.ttf") format("truetype")}
+.hero h1 .title-accent{font-family:"Cinzel",Georgia,serif;font-style:normal;font-weight:500;letter-spacing:-.025em}
+@media(max-width:600px){.hero h1 .title-accent{font-size:.78em}}
 </style>
 </head>
 <body>
-
-<header>
-    <div class="brand">
-        <img src="images/prism113-logo.png" alt="Prism 113 logo">
-        <span>Prism 113</span>
-    </div>
-
-    <nav>
-        <a href="#" class="nav-home" data-en="Home" data-ru="Главная">Home</a>
-        <a href="#games" class="nav-games" data-en="Games" data-ru="Игры">Games</a>
-        <a href="#contact" class="nav-contact" data-en="Contact" data-ru="Контакты">Contact</a>
-        <div class="lang-switch" onclick="changeLanguage()" aria-label="Language switch">
-            <span id="langEN" class="active-lang">EN</span>
-            <span id="langRU">RU</span>
-        </div>
-    </nav>
-</header>
-
-<section class="hero">
-    <video autoplay muted loop playsinline>
-        <source src="video/halfblade-preview.mp4" type="video/mp4">
-    </video>
-
-    <div class="hero-inner">
-        <div class="hero-copy">
-            <span class="kicker" data-en="Flagship Game" data-ru="Флагманская игра">Flagship Game</span>
-            <h1>Half Blade Duel Combat</h1>
-            <p class="hero-description"
-               data-en="Master intense blade battles, defeat powerful opponents, and become the ultimate warrior."
-               data-ru="Сражайся в напряжённых боях на клинках, побеждай сильных противников и стань величайшим воином.">
-               Master intense blade battles, defeat powerful opponents, and become the ultimate warrior.
-            </p>
-
-            <div class="hero-actions">
-                <a class="button"
-                   href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword"
-                   target="_blank"
-                   data-en="Download on Google Play"
-                   data-ru="Скачать в Google Play">
-                    Download on Google Play
-                </a>
-                <a class="button secondary"
-                   href="#games"
-                   data-en="Explore Games"
-                   data-ru="Посмотреть игры">
-                    Explore Games
-                </a>
-            </div>
-        </div>
-
-        <div class="hero-side">
-            <div class="hero-card">
-                <img src="images/half-blade.png" alt="Half Blade Duel Combat icon">
-                <div class="hero-stats">
-                    <div class="stat">
-                        <strong>⭐ 4.5</strong>
-                        <div class="stat-title" data-en="Rating" data-ru="Оценка">Rating</div>
-                    </div>
-                    <div class="stat">
-                        <strong>500K+</strong>
-                        <div class="stat-title" data-en="Downloads" data-ru="Установки">Downloads</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="games">
-    <h2 class="section-title" data-en="Our Games" data-ru="Наши игры">Our Games</h2>
-
-    <div class="games-grid">        <div class="card">
-            <div class="image">
-                <img src="images/half-blade.png" alt="Half Blade Duel Combat">
-            </div>
-            <h3>Half Blade Duel Combat</h3>
-            <div class="meta" data-en="Action / Duel Combat" data-ru="Экшен / Дуэльные бои">Action / Duel Combat</div>
-            <div class="game-badge" data-en="Flagship Game" data-ru="Флагманская игра">Flagship Game</div>
-            <p class="game-description"
-               data-en="Our main action title with intense sword fights, fast duels, and rewarding progression for competitive players."
-               data-ru="Наша главная экшен-игра с напряжёнными боями на мечах, быстрыми дуэлями и увлекательной прогрессией для соревновательных игроков.">
-               Our main action title with intense sword fights, fast duels, and rewarding progression for competitive players.
-            </p>
-
-            <div class="metrics">
-                <div class="metric">
-                    <b>⭐ 4.5</b>
-                    <div class="metric-label" data-en="Rating" data-ru="Оценка">Rating</div>
-                </div>
-                <div class="metric">
-                    <b>500K+</b>
-                    <div class="metric-label" data-en="Downloads" data-ru="Установки">Downloads</div>
-                </div>
-            </div>
-
-            <a class="game-button"
-               href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword"
-               target="_blank"
-               data-en="Download on Google Play"
-               data-ru="Скачать в Google Play">
-               Download on Google Play
-            </a>
-        </div>
-
-        <div class="card">
-            <div class="image">
-                <img src="images/liars-cards.jpg" alt="Liar's Cards - Ship of Deceit">
-            </div>
-            <h3>Liar's Cards - Ship of Deceit</h3>
-            <div class="meta" data-en="Adventure / Casual" data-ru="Приключения / Казуальная">Adventure / Casual</div>
-            <div class="game-badge" data-en="Party Mind Game" data-ru="Игра на блеф">Party Mind Game</div>
-            <p class="game-description"
-               data-en="Step into a world of deception, read your rivals, and outplay them in a casual card adventure full of bluffing and tension."
-               data-ru="Погрузитесь в мир обмана, считывайте соперников и переигрывайте их в казуальном карточном приключении с блефом и напряжением.">
-               Step into a world of deception, read your rivals, and outplay them in a casual card adventure full of bluffing and tension.
-            </p>
-
-            <div class="metrics">
-                <div class="metric">
-                    <b>⭐ 4.0</b>
-                    <div class="metric-label" data-en="Rating" data-ru="Оценка">Rating</div>
-                </div>
-                <div class="metric">
-                    <b>100K+</b>
-                    <div class="metric-label" data-en="Downloads" data-ru="Установки">Downloads</div>
-                </div>
-            </div>
-
-            <a class="game-button"
-               href="https://play.google.com/store/apps/details?id=com.Prism113.LiarsPirate"
-               target="_blank"
-               data-en="Download on Google Play"
-               data-ru="Скачать в Google Play">
-               Download on Google Play
-            </a>
-        </div>
-
-        <div class="card">
-            <div class="image">
-                <img src="images/dome-guardian.png" alt="Dome Guardian">
-            </div>
-            <h3>Dome Guardian</h3>
-            <div class="meta" data-en="Action / Defense" data-ru="Экшен / Защита">Action / Defense</div>
-            <div class="game-badge" data-en="Arcade Defense" data-ru="Аркадная защита">Arcade Defense</div>
-            <p class="game-description"
-               data-en="Protect your dome, hold back enemy waves, and survive in a compact action-defense experience built for mobile play."
-               data-ru="Защищайте купол, сдерживайте волны врагов и выживайте в динамичной мобильной игре с элементами защиты.">
-               Protect your dome, hold back enemy waves, and survive in a compact action-defense experience built for mobile play.
-            </p>
-
-            <div class="metrics">
-                <div class="metric">
-                    <b>⭐ 3.0</b>
-                    <div class="metric-label" data-en="Rating" data-ru="Оценка">Rating</div>
-                </div>
-                <div class="metric">
-                    <b>100K+</b>
-                    <div class="metric-label" data-en="Downloads" data-ru="Установки">Downloads</div>
-                </div>
-            </div>
-
-            <a class="game-button"
-               href="https://play.google.com/store/apps/details?id=com.Prism113.DomeGuardian"
-               target="_blank"
-               data-en="Download on Google Play"
-               data-ru="Скачать в Google Play">
-               Download on Google Play
-            </a>
-        </div>
-</div>
-</section>
-
-<section id="contact" class="contact">
-    <h2 class="section-title" data-en="Contact" data-ru="Контакты">Contact</h2>
-    <p data-en="Interested in cooperation or have questions?"
-       data-ru="Заинтересованы в сотрудничестве или есть вопросы?">
-       Interested in cooperation or have questions?
-    </p>
-    <a class="button"
-       href="mailto:prism113games@gmail.com"
-       data-en="Contact Us"
-       data-ru="Связаться">
-       Contact Us
-    </a>
-</section>
-
-<footer>
-    <div class="footer-brand">
-        <img src="images/prism113-logo.png" alt="Prism 113 logo">
-        <span>Prism 113 © 2021</span>
-    </div>
-    <div class="footer-links">
-        <a href="https://play.google.com/store/apps/dev?id=7446746398672876340" target="_blank">Google Play</a>
-        <a href="mailto:prism113games@gmail.com">prism113games@gmail.com</a>
-    </div>
-</footer>
-
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol><symbol id="i-store" viewBox="0 0 24 24"><path d="m5 3 15 9L5 21Zm0 0 10 14m-10 4L15 7"/></symbol>
+</defs></svg>
+<a class="skip-link" href="#main" data-en="Skip to content" data-ru="Перейти к содержимому">Skip to content</a>
+<header class="site-header"><div class="header-inner shell"><a class="brand" href="#home" aria-label="Prism 113"><img src="images/prism113-logo.png" alt="" width="38" height="38"><span>Prism <em>113</em></span></a>
+ <nav class="nav" id="navigation" aria-label="Main navigation" data-label-en="Main navigation" data-label-ru="Основная навигация"><a href="#games" data-en="Our games" data-ru="Наши игры">Our games</a><a href="#studio" data-en="The studio" data-ru="О студии">The studio</a><a href="#contact" data-en="Get in touch" data-ru="Связаться">Get in touch</a></nav>
+ <div class="header-tools"><div class="lang-switch" role="group" aria-label="Language / Язык"><button type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button><button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский">RU</button></div><a class="header-link" href="https://play.google.com/store/apps/dev?id=7446746398672876340" target="_blank" rel="noopener noreferrer">Google Play <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Open menu"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button></div></div><div class="scroll-progress" aria-hidden="true"></div></header>
+<main id="main">
+ <section class="hero" id="home" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true"><video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/halfblade-poster.jpg" tabindex="-1"><source src="video/halfblade-web.mp4" type="video/mp4"></video></div>
+  <div class="hero-content shell"><div class="eyebrow" data-en="Prism 113 / Independent game studio" data-ru="Prism 113 / Независимая игровая студия">Prism 113 / Independent game studio</div><h1 id="hero-title"><span>HALF BLADE</span><span class="title-accent">Duel Combat.</span></h1><p class="hero-description" data-en="Every duel is a new challenge. Master the blade, face powerful opponents, and fight your way to victory." data-ru="Каждая дуэль — новый вызов. Овладей клинком, брось вызов сильным противникам и проложи путь к победе.">Every duel is a new challenge. Master the blade, face powerful opponents, and fight your way to victory.</p><div class="hero-actions"><a class="button" href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-store"/></svg><span data-en="Get it on Google Play" data-ru="Скачать в Google Play">Get it on Google Play</span></a><button class="text-button" id="watch-trailer" type="button" aria-haspopup="dialog"><span class="play-ring"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span><span data-en="Watch gameplay" data-ru="Смотреть геймплей">Watch gameplay</span></button></div></div>
+  <div class="hero-bottom shell"><div class="hero-facts"><img src="images/half-blade.png" alt="" width="52" height="52"><div><p class="feature-label" data-en="Featured game" data-ru="Главная игра">Featured game</p><p class="feature-title">Half Blade Duel Combat</p></div><div class="hero-stat"><strong><span class="star" aria-hidden="true">★</span> 4.5</strong><span data-en="Google Play rating" data-ru="Оценка в Google Play">Google Play rating</span></div><div class="hero-stat"><strong>500K+</strong><span data-en="Downloads" data-ru="Установки">Downloads</span></div></div><div class="hero-controls"><a class="scroll-link" href="#games"><span data-en="Explore our games" data-ru="Открыть наши игры">Explore our games</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a><button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" aria-label="Pause animations" title="Pause animations"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button></div></div>
+ </section>
+ <section class="section shell" id="games" aria-labelledby="games-title"><div class="section-heading reveal"><div><div class="eyebrow" data-en="01 / Discover & play" data-ru="01 / Выбирай и играй">01 / Discover & play</div><h2 id="games-title" data-en="Small screen. Big adventures." data-ru="Большие приключения в твоём кармане.">Small screen. Big adventures.</h2></div><p data-en="A blade, a bluff, a last line of defense. Find your next challenge in our games." data-ru="Клинок, блеф или последний рубеж обороны. Найди свой следующий вызов в наших играх.">A blade, a bluff, a last line of defense. Find your next challenge in our games.</p></div>
+ <div class="games-grid">
+  <article class="game-card reveal" style="--delay:0ms"><a class="game-art" href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword" target="_blank" rel="noopener noreferrer" aria-label="Half Blade Duel Combat — Google Play"><img src="images/half-blade.png" alt="Half Blade Duel Combat" loading="lazy" width="1024" height="1024"><span class="art-label" data-en="Flagship game" data-ru="Главная игра">Flagship game</span><span class="art-number" aria-hidden="true">01 / 03</span></a><div class="game-info"><div class="game-genre" data-en="Action / Sword duels" data-ru="Экшен / Дуэли на мечах">Action / Sword duels</div><h3>Half Blade<br>Duel Combat</h3><p class="game-description" data-en="Intense sword fights, fast duels, and rewarding progression. Step into the arena and master every battle." data-ru="Напряжённые бои на мечах, быстрые дуэли и увлекательная прогрессия. Выходи на арену и оттачивай мастерство.">Intense sword fights, fast duels, and rewarding progression. Step into the arena and master every battle.</p><div class="game-stats"><span><span class="star" aria-hidden="true">★</span> 4.5 <small data-en="rating" data-ru="оценка">rating</small></span><span>500K+ <small data-en="downloads" data-ru="установок">downloads</small></span></div><a class="game-link" href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword" target="_blank" rel="noopener noreferrer"><span data-en="Explore on Google Play" data-ru="Открыть в Google Play">Explore on Google Play</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="privacy-link" href="privacy-policy-half-blade-duel-combat.html" data-en="Privacy policy" data-ru="Политика конфиденциальности">Privacy policy</a></div></article>
+  <article class="game-card reveal" style="--delay:100ms"><a class="game-art" href="https://play.google.com/store/apps/details?id=com.Prism113.LiarsPirate" target="_blank" rel="noopener noreferrer" aria-label="Liar's Cards — Ship of Deceit — Google Play"><img src="images/liars-cards.jpg" alt="Liar's Cards — Ship of Deceit" loading="lazy" width="1024" height="1024"><span class="art-label" data-en="Bluff & outplay" data-ru="Блефуй и побеждай">Bluff & outplay</span><span class="art-number" aria-hidden="true">02 / 03</span></a><div class="game-info"><div class="game-genre" data-en="Adventure / Card game" data-ru="Приключения / Карточная игра">Adventure / Card game</div><h3>Liar's Cards<br>Ship of Deceit</h3><p class="game-description" data-en="Trust your instincts, read your rivals, and call their bluff. A card adventure where every move holds a little deception." data-ru="Доверься интуиции, читай соперников и раскрывай их блеф. Карточное приключение, где каждый ход таит обман.">Trust your instincts, read your rivals, and call their bluff. A card adventure where every move holds a little deception.</p><div class="game-stats"><span><span class="star" aria-hidden="true">★</span> 4.0 <small data-en="rating" data-ru="оценка">rating</small></span><span>100K+ <small data-en="downloads" data-ru="установок">downloads</small></span></div><a class="game-link" href="https://play.google.com/store/apps/details?id=com.Prism113.LiarsPirate" target="_blank" rel="noopener noreferrer"><span data-en="Explore on Google Play" data-ru="Открыть в Google Play">Explore on Google Play</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="privacy-link" href="privacy-policy-liars-cards-ship-of-deceit.html" data-en="Privacy policy" data-ru="Политика конфиденциальности">Privacy policy</a></div></article>
+  <article class="game-card reveal" style="--delay:200ms"><a class="game-art" href="https://play.google.com/store/apps/details?id=com.Prism113.DomeGuardian" target="_blank" rel="noopener noreferrer" aria-label="Dome Guardian — Google Play"><img src="images/dome-guardian.png" alt="Dome Guardian" loading="lazy" width="1024" height="1024"><span class="art-label" data-en="Hold the line" data-ru="Держи оборону">Hold the line</span><span class="art-number" aria-hidden="true">03 / 03</span></a><div class="game-info"><div class="game-genre" data-en="Action / Defense" data-ru="Экшен / Защита">Action / Defense</div><h3>Dome Guardian</h3><p class="game-description" data-en="Your dome. Your last stand. Hold back waves of enemies and survive in a compact action-defense game built for mobile." data-ru="Твой купол. Твой последний рубеж. Сдерживай волны врагов и выживай в динамичной мобильной игре с элементами защиты.">Your dome. Your last stand. Hold back waves of enemies and survive in a compact action-defense game built for mobile.</p><div class="game-stats"><span><span class="star" aria-hidden="true">★</span> 3.0 <small data-en="rating" data-ru="оценка">rating</small></span><span>100K+ <small data-en="downloads" data-ru="установок">downloads</small></span></div><a class="game-link" href="https://play.google.com/store/apps/details?id=com.Prism113.DomeGuardian" target="_blank" rel="noopener noreferrer"><span data-en="Explore on Google Play" data-ru="Открыть в Google Play">Explore on Google Play</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="privacy-link" href="privacy-policy-dome-guardian.html" data-en="Privacy policy" data-ru="Политика конфиденциальности">Privacy policy</a></div></article>
+ </div><div class="catalog-bottom reveal"><p data-en="More to discover from Prism 113." data-ru="Открой больше игр от Prism 113.">More to discover from Prism 113.</p><a class="inline-link" href="https://play.google.com/store/apps/dev?id=7446746398672876340" target="_blank" rel="noopener noreferrer"><span data-en="All games on Google Play" data-ru="Все игры в Google Play">All games on Google Play</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></section>
+ <section class="studio shell" id="studio" aria-labelledby="studio-title"><div class="reveal"><div class="eyebrow" data-en="02 / Behind the games" data-ru="02 / За кадром">02 / Behind the games</div><h2 id="studio-title"><span data-en="Independent spirit." data-ru="Независимый дух.">Independent spirit.</span><br><em data-en="Made to play." data-ru="Создано для игры.">Made to play.</em></h2></div><div class="studio-copy reveal"><p data-en="We're Prism 113, an independent game studio exploring different ways to play. From the tension of a sword duel to the thrill of a well-timed bluff, our games put the challenge in your hands." data-ru="Мы — Prism 113, независимая игровая студия. Исследуем разные грани игры: от напряжённых дуэлей на мечах до азарта удачного блефа. Наши игры — твой вызов, всегда под рукой.">We're Prism 113, an independent game studio exploring different ways to play. From the tension of a sword duel to the thrill of a well-timed bluff, our games put the challenge in your hands.</p><div class="studio-tags"><span data-en="Independent games" data-ru="Независимые игры">Independent games</span><span data-en="Made for mobile" data-ru="Для мобильных устройств">Made for mobile</span><span>Google Play</span></div></div></section>
+ <section class="contact" id="contact" aria-labelledby="contact-title"><div class="contact-inner shell reveal"><div><div class="eyebrow" data-en="03 / Let's talk" data-ru="03 / Давай обсудим">03 / Let's talk</div><h2 id="contact-title"><span data-en="Great things start" data-ru="Всё начинается">Great things start</span><br><em data-en="with a conversation." data-ru="с разговора.">with a conversation.</em></h2><p data-en="Have a question about our games or an idea for a collaboration? We'd love to hear from you." data-ru="Есть вопрос о наших играх или идея для сотрудничества? Напиши нам — будем рады обсудить.">Have a question about our games or an idea for a collaboration? We'd love to hear from you.</p></div><div class="contact-action"><a class="button" href="mailto:prism113games@gmail.com"><span data-en="Say hello" data-ru="Написать нам">Say hello</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="contact-email" href="mailto:prism113games@gmail.com">prism113games@gmail.com</a></div></div></section>
+</main>
+<footer class="shell"><div class="footer-top"><a class="brand" href="#home" aria-label="Prism 113"><img src="images/prism113-logo.png" alt="" width="38" height="38"><span>Prism <em>113</em></span></a><div class="footer-links"><a href="#games" data-en="Our games" data-ru="Наши игры">Our games</a><a href="https://play.google.com/store/apps/dev?id=7446746398672876340" target="_blank" rel="noopener noreferrer">Google Play ↗</a><a href="mailto:prism113games@gmail.com" data-en="Contact" data-ru="Контакты">Contact</a></div></div><div class="footer-bottom"><span>© 2021–<span id="year">2026</span> Prism 113. <span data-en="Independent games. All rights reserved." data-ru="Независимые игры. Все права защищены.">Independent games. All rights reserved.</span></span><a class="back-top" href="#home"><span data-en="Back to top" data-ru="Наверх">Back to top</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a></div></footer>
+<dialog class="trailer-dialog" id="trailer-dialog" aria-labelledby="trailer-title"><div class="dialog-heading"><h2 id="trailer-title">Half Blade Duel Combat — <span data-en="Gameplay" data-ru="Геймплей">Gameplay</span></h2><button class="dialog-close" type="button" aria-label="Close gameplay" data-label-en="Close gameplay" data-label-ru="Закрыть геймплей"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div><video id="trailer-video" controls playsinline preload="none" poster="images/halfblade-poster.jpg"><source src="video/halfblade-web.mp4" type="video/mp4"></video><div class="dialog-footer"><span data-en="Ready to enter the arena?" data-ru="Готов выйти на арену?">Ready to enter the arena?</span><a class="inline-link" href="https://play.google.com/store/apps/details?id=com.Prism113.HalfSteelGladiatorSword" target="_blank" rel="noopener noreferrer"><span data-en="Get it on Google Play" data-ru="Скачать в Google Play">Get it on Google Play</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></dialog>
 <script>
-let currentLang = "en";
-
-function applyLanguage(lang){
-    currentLang = lang;
-    document.querySelector("#langEN").classList.toggle("active-lang", lang === "en");
-    document.querySelector("#langRU").classList.toggle("active-lang", lang === "ru");
-
-    document.querySelectorAll("[data-en]").forEach(el => {
-        el.textContent = el.getAttribute(lang === "en" ? "data-en" : "data-ru");
-    });
-
-    localStorage.setItem("prism113_lang", lang);
-}
-
-function changeLanguage(){
-    applyLanguage(currentLang === "en" ? "ru" : "en");
-}
-
-const savedLang = localStorage.getItem("prism113_lang");
-applyLanguage(savedLang === "ru" ? "ru" : "en");
+(() => {
+ 'use strict';
+ const $ = selector => document.querySelector(selector);
+ const readPreference = key => { try { return localStorage.getItem(key); } catch { return null; } };
+ const savePreference = (key, value) => { try { localStorage.setItem(key, value); } catch {} };
+ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+ const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+ const heroVideo = $('#hero-video'), trailerVideo = $('#trailer-video'), dialog = $('#trailer-dialog');
+ const motionButton = $('#motion-toggle'), menuButton = $('.menu-toggle'), nav = $('.nav');
+ const hero = $('.hero'), header = $('.site-header'), progress = $('.scroll-progress');
+ let currentLang = readPreference('prism113_lang') === 'ru' ? 'ru' : 'en';
+ let motionDisabled = reducedMotion.matches || readPreference('prism113_motion') === 'off';
+ let heroVisible = true, revealObserver;
+ function updateMotionLabel() {
+  const label = currentLang === 'ru' ? (motionDisabled ? 'Включить анимации' : 'Приостановить анимации') : (motionDisabled ? 'Enable animations' : 'Pause animations');
+  motionButton.setAttribute('aria-label', label); motionButton.title = label;
+  motionButton.setAttribute('aria-pressed', String(motionDisabled));
+  motionButton.querySelector('use').setAttribute('href', motionDisabled ? '#i-play' : '#i-pause');
+ }
+ function updateMenuLabel() {
+  const open = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-label', currentLang === 'ru' ? (open ? 'Закрыть меню' : 'Открыть меню') : (open ? 'Close menu' : 'Open menu'));
+  menuButton.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
+ }
+ function applyLanguage(lang) {
+  currentLang = lang; document.documentElement.lang = lang;
+  document.querySelectorAll('[data-en]').forEach(el => { el.textContent = el.dataset[lang]; });
+  document.querySelectorAll('[data-label-en]').forEach(el => { el.setAttribute('aria-label', el.getAttribute('data-label-' + lang)); });
+  document.querySelectorAll('[data-lang]').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.lang === lang)); });
+  document.title = lang === 'ru' ? 'Prism 113 — Независимая игровая студия' : 'Prism 113 — Independent Game Studio';
+  $('meta[name="description"]').content = lang === 'ru' ? 'Prism 113 — независимая игровая студия. Half Blade Duel Combat, Liar’s Cards и Dome Guardian в Google Play.' : 'Prism 113 is an independent game studio. Discover Half Blade Duel Combat, Liar’s Cards and Dome Guardian on Google Play.';
+  updateMotionLabel(); updateMenuLabel(); savePreference('prism113_lang', lang);
+ }
+ function syncHeroPlayback() {
+  if (motionDisabled || !heroVisible || document.hidden || dialog.open) heroVideo.pause();
+  else heroVideo.play().catch(() => {});
+ }
+ function applyMotion() {
+  document.documentElement.classList.toggle('motion-off', motionDisabled);
+  document.documentElement.classList.toggle('motion-on', !motionDisabled);
+  if (motionDisabled) {
+   document.querySelectorAll('.reveal.pending').forEach(el => el.classList.remove('pending'));
+   if (revealObserver) revealObserver.disconnect();
+   heroVideo.style.transform = '';
+  }
+  updateMotionLabel(); syncHeroPlayback();
+ }
+ document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
+ motionButton.addEventListener('click', () => { motionDisabled = !motionDisabled; savePreference('prism113_motion', motionDisabled ? 'off' : 'on'); applyMotion(); });
+ reducedMotion.addEventListener('change', event => { motionDisabled = event.matches || readPreference('prism113_motion') === 'off'; applyMotion(); });
+ applyLanguage(currentLang); applyMotion();
+ $('#year').textContent = new Date().getFullYear();
+ heroVideo.addEventListener('loadeddata', () => heroVideo.classList.add('ready'));
+ if (heroVideo.readyState >= 2 || motionDisabled) heroVideo.classList.add('ready');
+ document.addEventListener('visibilitychange', syncHeroPlayback);
+ if ('IntersectionObserver' in window) {
+  new IntersectionObserver(entries => { heroVisible = entries[0].isIntersecting; syncHeroPlayback(); }, {threshold:0}).observe(hero);
+  if (!motionDisabled) {
+   revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.remove('pending'); revealObserver.unobserve(entry.target); }
+   }), {threshold:.08});
+   document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pending'); revealObserver.observe(el); } });
+  }
+  const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+   if (entry.isIntersecting) document.querySelectorAll('.nav a').forEach(link => { if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); });
+  }), {rootMargin:'-15% 0px -50% 0px',threshold:0});
+  document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
+ }
+ function setMenu(open) { nav.classList.toggle('open', open); menuButton.setAttribute('aria-expanded', String(open)); updateMenuLabel(); }
+ menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+ nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+ document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); menuButton.focus(); } });
+ document.addEventListener('click', event => { if (!header.contains(event.target)) setMenu(false); });
+ matchMedia('(min-width:601px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
+ let scrollFrame = 0;
+ function updateScroll() {
+  header.classList.toggle('scrolled', window.scrollY > 24);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+  scrollFrame = 0;
+ }
+ addEventListener('scroll', () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll); }, {passive:true});
+ addEventListener('resize', updateScroll); updateScroll();
+ let pointerFrame = 0, pointerX = 0, pointerY = 0;
+ hero.addEventListener('pointermove', event => {
+  if (motionDisabled || !finePointer.matches) return;
+  const rect = hero.getBoundingClientRect();
+  pointerX = (event.clientX / rect.width - .5) * 10; pointerY = ((event.clientY - rect.top) / rect.height - .5) * 8;
+  if (!pointerFrame) pointerFrame = requestAnimationFrame(() => { if (!motionDisabled) heroVideo.style.transform = 'scale(1.035) translate(' + pointerX + 'px,' + pointerY + 'px)'; pointerFrame = 0; });
+ }, {passive:true});
+ hero.addEventListener('pointerleave', () => { heroVideo.style.transform = ''; });
+ $('#watch-trailer').addEventListener('click', () => {
+  dialog.showModal(); document.body.classList.add('modal-open'); syncHeroPlayback();
+  trailerVideo.play().catch(() => {});
+ });
+ $('.dialog-close').addEventListener('click', () => dialog.close());
+ dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+ dialog.addEventListener('close', () => { trailerVideo.pause(); document.body.classList.remove('modal-open'); syncHeroPlayback(); $('#watch-trailer').focus(); });
+})();
 </script>
-
 </body>
 </html>
